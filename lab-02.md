@@ -9,24 +9,6 @@ Ryan W
 library(tidyverse) 
 ```
 
-    ## Warning: package 'tidyverse' was built under R version 4.1.3
-
-    ## Warning: package 'ggplot2' was built under R version 4.1.3
-
-    ## Warning: package 'tibble' was built under R version 4.1.3
-
-    ## Warning: package 'tidyr' was built under R version 4.1.3
-
-    ## Warning: package 'readr' was built under R version 4.1.3
-
-    ## Warning: package 'purrr' was built under R version 4.1.3
-
-    ## Warning: package 'dplyr' was built under R version 4.1.3
-
-    ## Warning: package 'stringr' was built under R version 4.1.3
-
-    ## Warning: package 'forcats' was built under R version 4.1.3
-
 ``` r
 plastic_waste <- read.csv("data/plastic-waste.csv")
 ```
@@ -68,10 +50,10 @@ plastic_waste %>%
 ``` r
 ggplot(data = plastic_waste,
        aes(x = plastic_waste_per_cap)) +
-  geom_density()
+  geom_histogram(binwidth = 0.2)
 ```
 
-    ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
+    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-continent-2.png)<!-- -->
 
@@ -79,10 +61,10 @@ ggplot(data = plastic_waste,
 ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap,
                      color = continent)) +
-  geom_density()
+  geom_histogram(binwidth = 0.2)
 ```
 
-    ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
+    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-continent-3.png)<!-- -->
 
@@ -91,10 +73,10 @@ ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap,
                      color = continent,
                      fill = continent)) +
-  geom_density()
+  geom_histogram(binwidth = 0.2)
 ```
 
-    ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
+    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-continent-4.png)<!-- -->
 
@@ -103,10 +85,15 @@ ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap,
                      color = continent,
                      fill = continent)) +
-  geom_density(alpha = 0.7)
+  geom_histogram(bindwidth = 0.2, alpha = 0.7)
 ```
 
-    ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
+    ## Warning in geom_histogram(bindwidth = 0.2, alpha = 0.7): Ignoring unknown
+    ## parameters: `bindwidth`
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-continent-5.png)<!-- -->
 
@@ -117,7 +104,7 @@ ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap,
                      color = continent,
                      fill = continent)) +
-  geom_density(alpha = 0.5)
+  geom_density(alpha = 0.7)
 ```
 
     ## Warning: Removed 51 rows containing non-finite values (`stat_density()`).
