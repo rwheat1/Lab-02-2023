@@ -59,7 +59,7 @@ ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap,
                      color = continent,
                      fill = continent)) +
-  geom_density(alpha = 0.15)
+  geom_density(alpha = 0.5)
 ```
 
 ### Exercise 3
