@@ -21,8 +21,6 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 What can you say about how the continents compare to each other in terms of their plastic waste per capita?
 
-From the visuals, it seems like most continents are below 0.5 kg plastic waste per capita. However, South America sand North America seem to produce more plastic waster per person than the rest of the continents (although it's hard to tell because the South American pink sort of overwhelms the figure).
-
 ```{r plastic-waste-continent}
 ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
   geom_histogram(binwidth = 0.2)
@@ -30,27 +28,11 @@ ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
 plastic_waste %>%
   filter(plastic_waste_per_cap > 3.5)
 
-ggplot(data = plastic_waste,
-       aes(x = plastic_waste_per_cap)) +
-  geom_histogram(binwidth = 0.2)
-
-ggplot(data = plastic_waste,
-       mapping = aes(x = plastic_waste_per_cap,
-                     color = continent)) +
-  geom_histogram(binwidth = 0.2)
-
-ggplot(data = plastic_waste,
-       mapping = aes(x = plastic_waste_per_cap,
-                     color = continent,
-                     fill = continent)) +
-  geom_histogram(binwidth = 0.2)
-
-ggplot(data = plastic_waste,
-       mapping = aes(x = plastic_waste_per_cap,
-                     color = continent,
-                     fill = continent)) +
-  geom_histogram(bindwidth = 0.2, alpha = 0.7)
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2) + facet_wrap(~ continent)
 ```
+
+From the visuals, it seems like Oceania and South America produce less plastic waste per capita than the other five continents do.
 
 ### Exercise 2
 
@@ -65,6 +47,11 @@ ggplot(data = plastic_waste,
 ### Exercise 3
 
 Remove this text, and add your answer for Exercise 3 here.
+
+```{r}
+
+```
+
 
 ### Exercise 4
 

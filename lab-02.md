@@ -48,54 +48,13 @@ plastic_waste %>%
     ## 1   1341465
 
 ``` r
-ggplot(data = plastic_waste,
-       aes(x = plastic_waste_per_cap)) +
-  geom_histogram(binwidth = 0.2)
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2) + facet_wrap(~ continent)
 ```
 
     ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
 
 ![](lab-02_files/figure-gfm/plastic-waste-continent-2.png)<!-- -->
-
-``` r
-ggplot(data = plastic_waste,
-       mapping = aes(x = plastic_waste_per_cap,
-                     color = continent)) +
-  geom_histogram(binwidth = 0.2)
-```
-
-    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
-
-![](lab-02_files/figure-gfm/plastic-waste-continent-3.png)<!-- -->
-
-``` r
-ggplot(data = plastic_waste,
-       mapping = aes(x = plastic_waste_per_cap,
-                     color = continent,
-                     fill = continent)) +
-  geom_histogram(binwidth = 0.2)
-```
-
-    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
-
-![](lab-02_files/figure-gfm/plastic-waste-continent-4.png)<!-- -->
-
-``` r
-ggplot(data = plastic_waste,
-       mapping = aes(x = plastic_waste_per_cap,
-                     color = continent,
-                     fill = continent)) +
-  geom_histogram(bindwidth = 0.2, alpha = 0.7)
-```
-
-    ## Warning in geom_histogram(bindwidth = 0.2, alpha = 0.7): Ignoring unknown
-    ## parameters: `bindwidth`
-
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-    ## Warning: Removed 51 rows containing non-finite values (`stat_bin()`).
-
-![](lab-02_files/figure-gfm/plastic-waste-continent-5.png)<!-- -->
 
 ### Exercise 2
 
