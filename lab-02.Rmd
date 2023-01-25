@@ -19,7 +19,11 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
+#### Exercise 1.1
+
 What can you say about how the continents compare to each other in terms of their plastic waste per capita?
+
+From the visuals, it seems like Oceania and South America produce less plastic waste per capita than the other five continents do.
 
 ```{r plastic-waste-continent}
 ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
@@ -32,70 +36,104 @@ ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
   geom_histogram(binwidth = 0.2) + facet_wrap(~ continent)
 ```
 
-From the visuals, it seems like Oceania and South America produce less plastic waste per capita than the other five continents do.
-
 ### Exercise 2
 
+#### Exercise 2.1
 ```{r plastic-waste-density}
 ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap,
                      color = continent,
                      fill = continent)) +
-  geom_density(alpha = 0.7)
+  geom_density(alpha = 0.5, adjust = 5)
 ```
+
+#### Exercise 2.2
+
+Describe why we defined the color and fill of the curves by mapping aesthetics of the plot but we defined the alpha level as a characteristic of the plotting geom.
+
+Because we are coloring/filling based on a categorical variable: continent. So it's need to go in the area where we are defining the variables we are mapping. The alpha, on the other hand, applies to the whole visual, and is not associated with any variables. So it's defined as a characteristic of the plotting geom.
+
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+#### Exercise 3.1
 
-```{r}
+The violin plot reveals the density of the data, while the boxplot only reveals the central tendency and interquartile ranges. 
 
+```{r plastic-waste-violin}
+ggplot(data = plastic_waste,
+       mapping = aes(x = continent,
+                     y = plastic_waste_per_cap)) +
+  geom_boxplot()
+
+ggplot(data = plastic_waste,
+       mapping = aes(x = continent,
+                     y = plastic_waste_per_cap,
+                     color = continent,
+                     fill = continent)) +
+  geom_violin()
 ```
+
 
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+#### Exercise 4.1
 
-```{r plastic-waste-violin}
-# insert code here
+```{r - 4.1}
+ggplot(data = plastic_waste,
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = mismanaged_plastic_waste_per_cap)) +
+  geom_point()
 ```
 
-### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+The relationship is is positive -- as plastic waste per capita increases, mismanaged plastic waste per capita also increases.
 
-```{r plastic-waste-mismanaged}
-# insert code here
+#### Exercise 4.2
+
+```{r plastic-waste-scatterplot}
+ggplot(data = plastic_waste,
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = mismanaged_plastic_waste_per_cap,
+                     color = continent)) +
+  geom_point()
+
 ```
 
-### Exercise 6
+The plastic waste per capita - mismanaged plastic waste relationship seems to generally hold for all continents. However, Africa and Asia seem to have particularly strong relationships between these two variables.
 
-Remove this text, and add your answer for Exercise 6 here.
-
-```{r plastic-waste-mismanaged-continent}
-# insert code here
-```
-
-### Exercise 7
-
-Remove this text, and add your answer for Exercise 7 here.
+#### Exercise 4.3
 
 ```{r plastic-waste-population-total}
-# insert code here
+ggplot(data = plastic_waste,
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = total_pop)) +
+  geom_point()
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+ggplot(data = plastic_waste,
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = coastal_pop)) +
+  geom_point()
 ```
 
-### Exercise 8
+There seems to be a mildly stronger linear association between plastic waste per capita and the size of a country's coastal population, than there is with a country's total population. However, I'm not sure if this relationship would hold up to inferential testing.
 
-Remove this text, and add your answer for Exercise 8 here.
+### Exercise 5
 
 ```{r recreate-viz}
-# insert code here
+ggplot(data = plastic_waste %>%
+         filter(plastic_waste_per_cap < 3),
+       mapping = aes(x = coastal_pop / total_pop, 
+                     y = plastic_waste_per_cap)) +
+  geom_point(aes(color = continent))+
+  geom_smooth(color = "black")
+labs(x = "Coastal population proportion (Coastal/Total population)", y = "Plastic waste per capita")
 ```
+
+There doesn't seem to be much of relationship to speak of between coastal population proportion, and plastic waste per capita. In other words, the extent to which citizens live on the coast in a given country is not associated with whether that country has a plastic waste problem.
 
 ## Pro-Tips
 
